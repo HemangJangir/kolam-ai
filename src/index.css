@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #1f2937; /* gray-800 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-kolam {
+  background-image: radial-gradient(rgba(255, 215, 0, 0.12) 1px, transparent 1px), radial-gradient(rgba(255, 215, 0, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px;
+  background-position: 0 0, 12px 12px;
+}
+
+.rangoli-border {
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 215, 0, 0.65) 0,
+      rgba(255, 215, 0, 0.65) 6px,
+      rgba(128, 0, 0, 0.25) 6px,
+      rgba(128, 0, 0, 0.25) 12px
+    );
+}
+
+/* Premium ornaments and utilities */
+.ornament-divider {
+  background-image: linear-gradient(90deg, transparent, #FFD700 35%, #800000 50%, #FFD700 65%, transparent);
+  height: 2px;
+}
+
+.heading-calligraphy {
+  font-family: "Tangerine", "Great Vibes", serif;
+  text-shadow: 0 1px 0 rgba(128, 0, 0, 0.1), 0 4px 24px rgba(255, 153, 51, 0.25);
+}
+
+.btn-gold {
+  position: relative;
+  background-image: linear-gradient(90deg, #FF9933, #FFD700);
+  color: #800000;
+  box-shadow: 0 8px 24px rgba(255, 153, 51, 0.25);
+}
+.btn-gold:hover {
+  filter: brightness(1.02) saturate(1.05);
+  box-shadow: 0 10px 28px rgba(255, 153, 51, 0.35);
+}
+
+.gold-frame {
+  border-radius: 9999px;
+  padding: 24px;
+  background: radial-gradient( rgba(255,215,0,0.35), transparent 60% ),
+              conic-gradient(from 0deg, #FFD700, #FFCE45, #FFD700);
+  box-shadow: inset 0 0 0 2px rgba(255, 215, 0, 0.7), 0 4px 24px rgba(255, 215, 0, 0.25);
+}
+
+.temple-border {
+  background: repeating-linear-gradient( 90deg, #800000 0 8px, transparent 8px 12px ),
+              linear-gradient(#FFD700, #FFD700);
+  background-size: auto 2px, 100% 2px;
+  background-position: 0 100%, 0 100%;
+  background-repeat: repeat-x;
+}
+
+.icon-accent {
+  opacity: 0.18;
+  filter: drop-shadow(0 2px 8px rgba(255, 153, 51, 0.25));
+}
