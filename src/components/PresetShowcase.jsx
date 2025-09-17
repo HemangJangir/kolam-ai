@@ -76,10 +76,12 @@ export function PresetShowcase() {
       </div>
 
       <div className="mt-8 text-center">
-        <p className="text-sm text-gray-600">
-          These presets demonstrate the enhanced algorithm with proper dot-grid structures, 
-          symmetric patterns, and traditional kolam motifs inspired by Pinterest designs.
+        <p className="text-sm text-gray-600 mb-4">
+          Curated, simple and beautiful Kolams inspired by Pinterest aesthetics.
         </p>
+        <a href="#gallery" className="btn-gold inline-block font-semibold px-6 py-3 rounded-lg hover:scale-[1.02] transition-transform">
+          See All
+        </a>
       </div>
     </motion.section>
   )

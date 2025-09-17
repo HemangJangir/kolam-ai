@@ -12,12 +12,38 @@ export function Generator() {
   const [showDots, setShowDots] = useState(true)
   const [loading, setLoading] = useState(false)
   const [generateTrigger, setGenerateTrigger] = useState(0)
+  const [paletteType, setPaletteType] = useState('traditional')
+  const [customColors, setCustomColors] = useState(['#ffffff', '#ff0000', '#ffff00', '#0000ff'])
+  const [animationEnabled, setAnimationEnabled] = useState(false)
+  const [aiChoice, setAiChoice] = useState('')
 
   const handleGenerate = async () => {
     setLoading(true)
     setGenerateTrigger(prev => prev + 1) // Trigger kolam regeneration
     await new Promise((r) => setTimeout(r, 900))
     setLoading(false)
+  }
+
+  const applyAISuggestion = (key) => {
+    if (!key) return
+    // Simple keyword → preset/style/palette mapping
+    const suggestions = {
+      'flower': { preset: 'radial-lotus', style: 'traditional', complexity: 6, paletteType: 'traditional', theme: 'light' },
+      'lotus': { preset: 'radial-lotus', style: 'traditional', complexity: 7, paletteType: 'traditional', theme: 'light' },
+      'festival': { preset: '8x8grid', style: 'modern', complexity: 8, paletteType: 'modern', theme: 'light' },
+      'star': { preset: '5x5grid', style: 'traditional', complexity: 5, paletteType: 'traditional', theme: 'dark' },
+      'rangoli': { preset: '11to1', style: 'traditional', complexity: 6, paletteType: 'traditional', theme: 'light' },
+      'abstract': { preset: '7x7grid', style: 'modern', complexity: 7, paletteType: 'modern', theme: 'dark' }
+    }
+    const s = suggestions[key]
+    if (s) {
+      setPreset(s.preset)
+      setStyle(s.style)
+      setComplexity(s.complexity)
+      setPaletteType(s.paletteType)
+      setTheme(s.theme)
+      setGenerateTrigger(prev => prev + 1)
+    }
   }
 
   return (
@@ -107,6 +133,61 @@ export function Generator() {
             <span className="text-sm text-gray-600">Show dots</span>
           </div>
         </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Color Palette</label>
+          <select
+            value={paletteType}
+            onChange={(e) => setPaletteType(e.target.value)}
+            className="w-full rounded-md border-gray-300 focus:border-saffron focus:ring-saffron"
+          >
+            <option value="traditional">Traditional (White, Red, Yellow, Blue)</option>
+            <option value="modern">Modern Gradients</option>
+            <option value="custom">Custom Colors</option>
+          </select>
+          {paletteType === 'custom' && (
+            <div className="mt-2 grid grid-cols-4 gap-2">
+              {customColors.map((c, i) => (
+                <input
+                  key={i}
+                  type="color"
+                  value={c}
+                  onChange={(e) => {
+                    const next = [...customColors]
+                    next[i] = e.target.value
+                    setCustomColors(next)
+                  }}
+                  className="w-full h-9 p-0 border border-gray-200 rounded"
+                />
+              ))}
+            </div>
+          )}
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Animation Mode</label>
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={animationEnabled}
+              onChange={(e) => setAnimationEnabled(e.target.checked)}
+              className="accent-saffron"
+            />
+            <span className="text-sm text-gray-600">Step-by-Step Animation</span>
+          </div>
+        </div>
+        <div className="sm:col-span-2 lg:col-span-3">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Suggestions</label>
+          <select
+            value={aiChoice}
+            onChange={(e) => { setAiChoice(e.target.value); applyAISuggestion(e.target.value) }}
+            className="w-full rounded-md border-gray-300 focus:border-saffron focus:ring-saffron"
+          >
+            <option value="">Choose a suggestion…</option>
+            <option value="flower">Flower</option>
+            <option value="festival">Festival</option>
+            <option value="star">Star</option>
+            <option value="abstract">Abstract</option>
+          </select>
+        </div>
       </div>
 
       <div className="mt-6 flex items-center gap-3">
@@ -139,6 +220,10 @@ export function Generator() {
           preset={preset}
           theme={theme}
           showDots={showDots}
+          paletteType={paletteType}
+          customColors={customColors}
+          animationEnabled={animationEnabled}
+          suggestion={aiChoice}
           onGenerate={generateTrigger}
         />
       </div>

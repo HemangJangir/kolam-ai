@@ -5,7 +5,6 @@ import { About } from './components/About.jsx'
 import { Gallery } from './components/Gallery.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Generator } from './components/Generator.jsx'
-import { PresetShowcase } from './components/PresetShowcase.jsx'
 
 function App() {
   return (
@@ -35,9 +34,6 @@ function App() {
         </section>
         <section id="generator" className="py-16">
           <Generator />
-        </section>
-        <section id="showcase" className="py-16">
-          <PresetShowcase />
         </section>
         <section id="about" className="py-16">
           <About />
