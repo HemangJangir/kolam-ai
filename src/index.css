@@ -70,3 +70,38 @@ body {
   opacity: 0.18;
   filter: drop-shadow(0 2px 8px rgba(255, 153, 51, 0.25));
 }
+
+/* Kolam Canvas Animations */
+.kolam-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.kolam-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #FFD700, #FF9933, #FFD700, #FF9933);
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease infinite;
+  border-radius: 12px;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.kolam-svg {
+  filter: drop-shadow(0 4px 8px rgba(128, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.kolam-svg:hover {
+  transform: scale(1.02);
+}
