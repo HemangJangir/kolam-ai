@@ -2,9 +2,9 @@ import './index.css'
 import { Navbar } from './components/Navbar.jsx'
 import { Hero } from './components/Hero.jsx'
 import { About } from './components/About.jsx'
-import { Gallery } from './components/Gallery.jsx'
 import { Footer } from './components/Footer.jsx'
-import { Generator } from './components/Generator.jsx'
+import Community from './components/Community.jsx'
+import { AboutUs } from './components/AboutUs.jsx'
 
 function App() {
   return (
@@ -32,14 +32,14 @@ function App() {
         <section id="home">
           <Hero />
         </section>
-        <section id="generator" className="py-16">
-          <Generator />
-        </section>
-        <section id="about" className="py-16">
+        <section id="about" className="py-24">
           <About />
         </section>
-        <section id="gallery" className="py-16">
-          <Gallery />
+        <section id="about-us" className="py-16">
+          <AboutUs />
+        </section>
+        <section id="community" className="py-16">
+          <Community />
         </section>
       </main>
       <Footer />

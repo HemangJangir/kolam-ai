@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 
 const links = [
   { href: '#home', label: 'Home' },
-  { href: '#generator', label: 'Generator' },
+  { href: '/generate', label: 'Generator' },
   { href: '#showcase', label: 'Presets' },
   { href: '#gallery', label: 'Gallery' },
+  { href: '#community', label: 'Community' },
   { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
 ]
@@ -19,7 +20,9 @@ export function Navbar() {
   }, [])
 
   const handleSmooth = (e) => {
-    const targetId = (e.currentTarget.getAttribute('href') || '').replace('#', '')
+    const href = e.currentTarget.getAttribute('href') || ''
+    if (!href.startsWith('#')) return
+    const targetId = href.replace('#', '')
     if (!targetId) return
     e.preventDefault()
     const el = document.getElementById(targetId)
@@ -45,8 +48,7 @@ export function Navbar() {
           ))}
         </ul>
         <a
-          href="#generator"
-          onClick={handleSmooth}
+          href="/generate"
           className="md:inline-block hidden btn-gold font-medium px-4 py-2 rounded hover:scale-[1.02] transition-transform"
         >
           Generate Kolam
